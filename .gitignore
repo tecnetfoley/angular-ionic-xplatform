@@ -29,7 +29,7 @@ plugins/android.json
 plugins/ios.json
 $RECYCLE.BIN/
 
-dist-web/
+dist/
 dist-electron/
 
 .DS_Store
