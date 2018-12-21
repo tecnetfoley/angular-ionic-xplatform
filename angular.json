@@ -14,7 +14,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "www",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -60,10 +60,71 @@
                   "maximumError": "5mb"
                 }
               ]
+            },            
+            "cordova": {
+              "outputPath": "dist-cordova/www",
+              "index": "src-cordova/index.html"
+            },
+            "cordova-prod": {
+              "outputPath": "dist-cordova/www",
+              "index": "src-cordova/index.html",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "electron": {              
+              "outputPath": "dist-electron/app",
+              "index": "src-electron/app/index.html"
+            },
+            "electron-prod": {
+              "outputPath": "dist-electron/app",
+              "index": "src-electron/app/index.html",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             },
             "ci": {
               "progress": false
             }
+
           }
         },
         "serve": {
@@ -125,11 +186,14 @@
         "ionic-cordova-build": {
           "builder": "@ionic/angular-toolkit:cordova-build",
           "options": {
-            "browserTarget": "app:build"
-          },
-          "configurations": {
+            "browserTarget": "app:build:cordova",  
+            "platform": "android",
+            "cordovaBasePath": "dist-cordova/",
+            "cordovaAssets": false
+            },
+            "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "browserTarget": "app:build:cordova-prod"
             }
           }
         },
